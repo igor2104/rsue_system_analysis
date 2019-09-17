@@ -1,0 +1,40 @@
+{% if object_function_forms|length %}
+	{{ object_function_forms.management_form }}
+	<table class="table table-dark table-striped table-bordered table-functions-objects">
+		<thead>
+			<tr>
+				<th style="border-top: 0;border-left: 0;" class="bg-white"></th>
+				<th class="text-center" colspan="{{object_function_forms|length|add:'-2'}}">Обьекты</th>
+			</tr>
+		</thead>
+		<tbody class="text-center">
+			{% for form in object_function_forms %}
+				{% if forloop.counter == 1 %}
+					<tr>
+						<td><strong>Показатели (Функции)</strong></td>
+						{% for object in form.fields.objects_list.queryset %}
+							<td class="bg-primary"><strong>{{object}}</strong></td>
+						{% endfor %}
+						<td></td>
+					</tr>
+				{% endif %}
+				<tr>
+					<td class="bg-primary"><strong>{{form.instance}}</strong></td>
+					{% for line in form %}
+						{% for field in line %}
+							<td>
+								<label {% if field.data.attrs.checked %}class="bg-success"{% endif %}>
+									<input type="{{field.data.type}}" name="{{field.data.name}}" value="{{field.data.value}}" id="{{field.data.attrs.id}}" {% if field.data.attrs.checked %}checked{% endif %}>
+									&nbsp;
+								</label>
+							</td>
+						{% endfor %}
+					{% endfor %}
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<button type="submit" data-toggle="tooltip" title="Сохранить" class="btn btn-success w-lg-max-100">
+		<i class="fa fa-floppy-o"></i> Сохранить данные
+	</button>
+{% endif %}

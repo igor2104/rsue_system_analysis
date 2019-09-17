@@ -1,0 +1,27 @@
+.table-functions-objects tr td:last-child {
+	display: none;
+}
+.table-functions-objects tr td{
+	position: relative;
+}
+.table-functions-objects tr td label{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+}
+.no-touch .table-functions-objects tr td label:hover{
+	cursor: pointer;
+	background-color: #28a745!important;
+}
+.no-touch .table-functions-objects tr td label.bg-success:hover{
+	background-color: #dc3545!important;
+}

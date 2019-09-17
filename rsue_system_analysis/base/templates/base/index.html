@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block links %}
+	<link rel="stylesheet" type="text/css" href="{% static 'base/css/style.css' %}">
+{% endblock links %}
+
+{% block htmlattribute %}{% endblock htmlattribute %}
+
+{% block content %}
+<div class="container margin-content">
+	{% if list_method %}
+		<div class="row methods align-items-stretch">
+			<div class="col-12">
+				<h2 class="text-center">Методы</h2>
+				<hr>
+			</div>
+			{% for method in list_method %}
+				<div class="col-sm-12 col-md-6 d-flex align-items-stretch">
+					<div class="method">
+						<h5 class="name text-center">{{method.name}}</h5>
+						<p class="description">{{method.description}}</p>
+						<a href="{% url method.url|add:':'|add:'index' %}" class="url">
+							<i class="fa fa-calculator" aria-hidden="true"></i> Перейти к расчету
+						</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	{% endif %}
+	{% if list_documents %}
+		<div class="row documents">
+			<div class="col-12">
+				<h2 class="text-center inf-head">Методическая информация</h2>
+				<hr>
+			</div>
+			{% for document in list_documents %}
+				<div class="col-12 col-sm-6 col-md-4 d-flex">
+					<a href="{{document.document.url}}" class="text-white text-center btn btn-primary document">
+						<div class="download-icon d-flex justify-content-center align-items-center">
+							<i class="fa fa-download" aria-hidden="true"></i>
+						</div>
+						<div class="d-flex justify-content-center align-items-center">
+							{{document.name}}
+						</div>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+	{% endif %}
+</div>
+{% endblock content %}

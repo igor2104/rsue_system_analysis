@@ -1,0 +1,99 @@
+{% extends "puro/base.html" %}
+{% load static %}
+
+{% block titel %}Опрос: {{object.poll.name}} - Тур: {{object.name}} | Сравнение по критерию функциональной полноты
+{% endblock titel %}
+
+{% block links %}
+<style type="text/css">
+	.ui-state-highlight{
+		height: 40px;
+	}
+	.ui-state-default{
+		cursor: move;
+		user-select: none;
+	}
+</style>
+{% endblock links %}
+
+{% block content %}
+<div class="container margin-content">
+	<div class="row mt-4">
+		<div class="col-12">
+			<form class="group-name-form" method="POST" action="{% url 'puro:tour_edit' object.pk %}">
+				{% csrf_token %}
+				<div class="group-name">
+					{% include "puro/inc/edit_name_form.html" with form=tour_form subtitle='Тур' %}
+				</div>
+			</form>
+			<hr class="hr-bold">
+		</div>
+	</div>
+	<div class="row mb-2">
+		<div class="col-12">
+			<h4>
+				Эксперты
+			</h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<form class="ajax-save" method="POST" action="{% url 'puro:order_save' object.pk %}">
+				{% csrf_token %}
+				<div class="replace-html">
+					{% include "puro/inc/order_formset.html" with formset=expert_indicator_order_form %}
+				</div>
+				<button type="submit" data-tooltip="tooltip" class="btn mt-2 btn-success w-lg-max-100" title="Сохранить">
+					<i class="fa fa-floppy-o"></i> Сохранить
+				</button>
+				<a href="{% url 'puro:tour_calculate' object.pk %}" data-tooltip="tooltip" class="text-white btn mt-2 btn-primary w-lg-max-100" title="Сохранить">
+					<i class="fa fa-calculator"></i> Перейти к расчету
+				</a>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+	<script type="text/javascript" src="{% static 'puro/js/edit.js' %}"></script>
+	<script type="text/javascript">
+		function sortable_init() {
+			$('.sortable').each(function(index, el) {
+				$(el).sortable({
+					placeholder: "ui-state-highlight m-2",
+					axis: "y",
+				});
+			});
+		}
+
+		jQuery(document).ready(function($) {
+			sortable_init();
+
+			$('.ajax-save').on('submit', function(event) {
+				event.preventDefault();
+				var form = $(this);
+				$(this).find('li.ui-sortable-handle').each(function(index, el) {
+					$(el).find('[name*="order"]')[0].value = $(el).index();
+				});
+				$.ajax({
+					type: this.method,
+					url: this.action,
+					data: $(this).serialize(),
+					success: function(data){
+						form.children('.replace-html').html(data.form_html);
+						sortable_init();
+
+						alert_show(alert_save);
+					},
+					error: function (jqXHR, exception){
+						form.children('.replace-html').html(jqXHR.responseJSON.form_html);
+						sortable_init();
+
+						alert_show(alert_error);
+					}
+				});
+			});
+		});
+	</script>
+{% endblock scripts %}

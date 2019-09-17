@@ -1,0 +1,96 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru" {% block htmlattribute %}class="html-bg"{% endblock htmlattribute %}>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% block titel %}{{page_name}}{% endblock titel %}</title>
+
+	<link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+	<link rel="stylesheet" href="{% static 'lib/jquery-ui-1.12.1/jquery-ui.min.css' %}">
+
+	<link href="{% static 'lib/bootstrap-4.0.0/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'lib/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet">
+	{% block links %}{% endblock links %}
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+	<link href="{% static 'css/media.css' %}" rel="stylesheet">
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body data-spy="scroll" data-target="#sidebar_spy" data-offset="50">
+	{% block header %}
+		<header class="header">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-rsue">
+				<strong class="navbar-brand">{% block pagename %}{{page_name }}{% endblock pagename %}</strong>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						{% block nav %}{% endblock nav %}
+					</ul>
+					<ul class="navbar-nav">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+								<i class="fa fa-user-circle-o"></i>
+								{% if user.last_name and user.first_name %}
+									{{user.last_name}} {{user.first_name}}
+								{% else %}
+									{{user.username}}
+								{% endif %}
+							</a>
+							<div class="dropdown-menu dropdown-menu-right" >
+								<a class="dropdown-item" href="/">
+									<i class="fa fa-home"></i> На главную
+								</a>
+								<a class="dropdown-item" href="/">
+									<i class="fa fa-address-card"></i> Личная информация
+								</a>
+
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="{% url 'logout' %}?next={{request.path}}">
+									<i class="fa fa-sign-out"></i> Выход
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+	{% endblock header %}
+
+	<main class="content {% if user.is_authenticated %}mb{% endif %}">
+		{% block content %}{% endblock content %}
+
+		{% block after_content %}
+			<div class="alert-container" id="alert-container"></div>
+		{% endblock after_content %}
+	</main>
+
+	{% if user.is_authenticated %}
+		<footer class="footer footer-bottom bg-rsue">
+			<div class="container-fluid text-center">
+				<span class="text-white">Ростовский Государственный Экономический Университет (РИНХ)</span><br>
+				<span class="text-white">Разработали студенты: <i class="fa fa-user"></i> Полиев Алексей, <i class="fa fa-user" ></i> Загиров Антон, <i class="fa fa-user"></i> Ермолов Игорь</span><br>
+				<span class="text-white">© {% now 'Y' %}, RSUE, Все права защищены</span>
+			</div>
+		</footer>
+	{% endif %}
+
+	<script src="{% static 'lib/jquery.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'lib/jquery-ui-1.12.1/jquery-ui.min.js' %}"></script>
+	<script src="{% static 'lib/popper.min.js' %}"></script>
+	<script src="{% static 'lib/bootstrap-4.0.0/js/bootstrap.min.js' %}"></script>
+	{% block scripts %}{% endblock scripts %}
+	<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

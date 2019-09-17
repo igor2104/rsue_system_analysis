@@ -1,0 +1,37 @@
+{% extends "functional_completeness/base.html" %}
+{% load static %}
+
+{% block titel %} Список групп | Сравнение по критерию функциональной полноты
+{% endblock titel %}
+
+{% block content %}
+<div class="container margin-content">
+	<div class="row">
+		<div class="col-12">
+			<h2 class="text-center">Группы для сравнения</h2>
+			<hr>
+		</div>
+		{% if group_list %}
+			<div class="col-12 group-list">
+				{% for group in group_list %}
+					{% include "functional_completeness/inc/group_element.html" %}
+				{% endfor %}
+			</div>
+			<div class="col-12 d-none d-lg-block"><hr></div>
+		{% endif %}
+		<div class="col-12 group-form">
+			<form method="POST" action="{% url 'functional_completeness:group_add' %}" class="form-group-add d-none">
+				{% csrf_token %}
+				<div class="dynamic-form">
+					{% include "functional_completeness/inc/group_add_form.html" %}
+				</div>
+			</form>
+			<button class="btn btn-primary btn-add-group"><i class="fa fa-plus"></i> Добавить группу</button>
+		</div>
+	</div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+	<script src="{% static 'functional_completeness/js/group_list.js' %}"></script>
+{% endblock scripts %}

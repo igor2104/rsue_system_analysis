@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block htmlattribute %}{% endblock htmlattribute %}
+
+{% block pagename %}
+	{% with page_name='Сравнение по критерию функциональной полноты'  %}
+		{% if back_url %}
+			<a href="{{back_url}}">
+				<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> {{page_name}}
+			</a>
+		{% else  %}
+			{{page_name}}
+		{% endif %}
+	{% endwith %}
+{% endblock pagename %}

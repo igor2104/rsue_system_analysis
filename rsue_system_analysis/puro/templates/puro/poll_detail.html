@@ -1,0 +1,101 @@
+{% extends "puro/base.html" %}
+{% load static %}
+
+{% block titel %}Опрос: {{object.name}} | Сравнение по критерию функциональной полноты
+{% endblock titel %}
+
+{% block content %}
+<div class="container margin-content">
+    <div class="row mt-4">
+        <div class="col-12">
+            <form class="group-name-form" method="POST" action="{% url 'puro:poll_edit' object.pk %}">
+                {% csrf_token %}
+                <div class="group-name">
+                    {% include "puro/inc/edit_name_form.html" with form=poll_form subtitle='Опрос' %}
+                </div>
+            </form>
+            <hr class="hr-bold">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-11">
+                    <h3 class="text-center mb-3">Туры</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <form method="POST" action="{% url 'puro:tour_save' object.pk %}" class="form-save" data-prefix="{{tour_forms.prefix}}">
+                {% csrf_token %}
+                <div class="objects content-replace">
+                    {% include "inc/inline_formset.html" with formset=tour_forms %}
+                </div>
+                <button data-toggle="tooltip" title="Добавить тур" class="btn btn-primary btn-add w-lg-max-100 mb-3 mb-lg-0">
+                    <i class="fa fa-plus"></i> Добавить тур
+                </button>
+                <button type="submit" aria-hidden="true" data-toggle="tooltip" class="btn btn-success w-lg-max-100" title="Сохранить">
+                    <i class="fa fa-floppy-o"></i> Сохранить туры
+                </button>
+            </form>
+            <hr class="hr-lg-bold">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-11">
+                    <h3 class="text-center mb-3">Эксперты</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <form method="POST" action="{% url 'puro:expert_save' object.pk %}" class="form-save" data-prefix="{{expert_forms.prefix}}">
+                {% csrf_token %}
+                <div class="objects content-replace">
+                    {% include "inc/inline_formset.html" with formset=expert_forms %}
+                </div>
+                <button data-toggle="tooltip" title="Добавить тур" class="btn btn-primary btn-add w-lg-max-100 mb-3 mb-lg-0">
+                    <i class="fa fa-plus"></i> Добавить эксперта
+                </button>
+                <button type="submit" aria-hidden="true" data-toggle="tooltip" class="btn btn-success w-lg-max-100" title="Сохранить">
+                    <i class="fa fa-floppy-o"></i> Сохранить экспертов
+                </button>
+            </form>
+            <hr class="hr-lg-bold">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-11">
+                    <h3 class="text-center mb-3">Показатели</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <form method="POST" action="{% url 'puro:indicator_save' object.pk %}" class="form-save" data-prefix="{{indicator_forms.prefix}}">
+                {% csrf_token %}
+                <div class="objects content-replace">
+                    {% include "inc/inline_formset.html" with formset=indicator_forms %}
+                </div>
+                <button data-toggle="tooltip" title="Добавить тур" class="btn btn-primary btn-add w-lg-max-100 mb-3 mb-lg-0">
+                    <i class="fa fa-plus"></i> Добавить показатель
+                </button>
+                <button type="submit" aria-hidden="true" data-toggle="tooltip" class="btn btn-success w-lg-max-100" title="Сохранить">
+                    <i class="fa fa-floppy-o"></i> Сохранить показатели
+                </button>
+            </form>
+            <hr class="hr-lg-bold">
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'puro/js/edit.js'' %}"></script>
+{% endblock scripts %}

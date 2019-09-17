@@ -1,0 +1,37 @@
+{% extends "puro/base.html" %}
+{% load static %}
+
+{% block titel %} Опросы | Экспертные методы
+{% endblock titel %}
+
+{% block content %}
+<div class="container margin-content">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center">Опросы</h2>
+            <hr>
+        </div>
+        {% if poll_list %}
+            <div class="col-12 group-list">
+                {% for poll in poll_list %}
+                    {% include "puro/inc/poll_element.html" %}
+                {% endfor %}
+            </div>
+            <div class="col-12 d-none d-lg-block"><hr></div>
+        {% endif %}
+        <div class="col-12 group-form">
+            <form method="POST" action="{% url 'puro:poll_add' %}" class="form-group-add d-none">
+                {% csrf_token %}
+                <div class="dynamic-form">
+                    {% include "puro/inc/poll_add_form.html" %}
+                </div>
+            </form>
+            <button class="btn btn-primary btn-add-group"><i class="fa fa-plus"></i> Добавить опрос</button>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'puro/js/poll_list.js' %}"></script>
+{% endblock scripts %}

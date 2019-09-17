@@ -1,0 +1,10 @@
+{% for form in indicators_form %}
+	<div class="col-12 col-md-3">
+		<div class="form-group row">
+			<label class="col-2 col-form-label">{{form.label}}:</label>
+			<div class="col-10">
+				<input type="{{ form.field.widget.input_type }}" id="{{ form.id_for_label }}" name="{{ form.html_name }}" placeholder="{{ form.label }}" value="{{ form.initial|safe }}" class="form-control" step="0.1">
+			</div>
+		</div>
+	</div>
+{% endfor %}

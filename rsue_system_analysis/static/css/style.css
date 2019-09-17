@@ -1,0 +1,167 @@
+.h-100vh{
+	height: 100vh !important;
+}
+.tooltip { top: 0; }
+html{
+	position: relative;
+	min-height: 100vh;
+}
+
+.margin-content{
+	margin-top: 25px;
+}
+
+.navbar-brand a{
+	color: white;
+	text-decoration: none;
+}
+.navbar-brand a:hover i{
+	color: #138aaf;
+}
+
+.bg-rsue{
+	background-color: black !important;
+}
+
+.alert-container{
+	position: fixed;
+	top: 8%;
+	right: 15px;
+	z-index: 10
+}
+
+.navbar-dark .navbar-toggler{
+	color: white;
+	border-color: white;
+}
+
+.navbar-dark .navbar-toggler:focus{
+	outline: none;
+}
+
+.dropdown-toggle[aria-expanded="true"]:after {
+	transform: rotate(180deg);
+}
+
+.dropdown-toggle:after {
+	transition: 0.5s;
+}
+
+.navbar-toggler-icon{
+	transition-property: background-image;
+	transition-duration: .2s;
+}
+
+.navbar-dark .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon{
+	background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMzJweCIgdmVyc2lvbj0iMS4xIiBoZWlnaHQ9IjMycHgiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNjQgNjQiPgogIDxnPgogICAgPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTI4Ljk0MSwzMS43ODZMMC42MTMsNjAuMTE0Yy0wLjc4NywwLjc4Ny0wLjc4NywyLjA2MiwwLDIuODQ5YzAuMzkzLDAuMzk0LDAuOTA5LDAuNTksMS40MjQsMC41OSAgIGMwLjUxNiwwLDEuMDMxLTAuMTk2LDEuNDI0LTAuNTlsMjguNTQxLTI4LjU0MWwyOC41NDEsMjguNTQxYzAuMzk0LDAuMzk0LDAuOTA5LDAuNTksMS40MjQsMC41OWMwLjUxNSwwLDEuMDMxLTAuMTk2LDEuNDI0LTAuNTkgICBjMC43ODctMC43ODcsMC43ODctMi4wNjIsMC0yLjg0OUwzNS4wNjQsMzEuNzg2TDYzLjQxLDMuNDM4YzAuNzg3LTAuNzg3LDAuNzg3LTIuMDYyLDAtMi44NDljLTAuNzg3LTAuNzg2LTIuMDYyLTAuNzg2LTIuODQ4LDAgICBMMzIuMDAzLDI5LjE1TDMuNDQxLDAuNTljLTAuNzg3LTAuNzg2LTIuMDYxLTAuNzg2LTIuODQ4LDBjLTAuNzg3LDAuNzg3LTAuNzg3LDIuMDYyLDAsMi44NDlMMjguOTQxLDMxLjc4NnoiLz4KICA8L2c+Cjwvc3ZnPgo=);
+}
+.navbar-dark .navbar-toggler[aria-expanded="true"]{
+	border-color: transparent;
+}
+
+.content.mb{
+	margin-bottom: 170px;
+}
+
+.html-bg{
+	background: #FAFAFA;
+}
+
+.content{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	align-items: center;
+	min-height: 75vh;
+}
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	min-height: 60px;
+	line-height: 32px;
+	background-color: #f5f5f5;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.hr-bold{
+	border-width: 4px;
+}
+
+ul.errorlist {
+	list-style-type: none;
+	padding: 0;
+	margin-top: 10px;
+	margin-left: 10px;
+	color: red;
+}
+
+.btn.focus, .btn:focus{
+	box-shadow: none;
+}
+
+/*----------------------Страница авторизации------------------------*/
+.login-form-container{
+	border: lightgray 1px solid;
+	border-radius: 5px;
+	background: white;
+	font-weight: 500;
+	-webkit-box-shadow: 0px 0px 25px -4px lightslategrey;
+	box-shadow: 0px 0px 25px -4px lightslategrey;
+}
+
+.login-container .login-header{
+	margin-bottom: 20px;
+}
+
+.login-container  .login-header{
+	text-align: center;
+}
+
+.login-form-container a{
+	font-weight: 100;
+	font-size: 13px !important;
+	justify-content: center;
+	border: none !important;
+}
+
+.login-form-container .form-group.row{
+	border-bottom: lightgray 1px solid;
+	margin-bottom: 0;
+}
+
+.login-form-container .form-group-submit {
+	padding: 10px;
+}
+.login-form-container .form-group-submit .btn{
+	padding: 7px 5px;
+}
+
+.login-form-container .form-group label{
+	padding: 17px 0;
+	justify-content: center;
+}
+
+.login-form-container .form-group label, .login-form-container .form-group a{
+	margin: 0;
+	font-size: 17px;
+	align-items: center;
+	display: flex;
+	border-right: lightgray 1px solid;
+}
+.login-form-container .form-group input{
+	border: 0;
+	border-radius: 0;
+	font-size: 17px;
+	border-top-right-radius: 5px;
+	box-shadow: none;
+	padding-left: 25px;
+}
+/*----------------------Конец страница авторизации------------------------*/
+
+.btn.btn-danger input{
+	cursor: pointer;
+}

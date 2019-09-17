@@ -1,0 +1,32 @@
+<div class="row group-name-show">
+	<div class="col-12 col-lg-11 text-center mb-3 mb-lg-0">
+		<h3 class="mb-0 name">{{group_form.name.value}}</h3>
+	</div>
+	<div class="col-lg-1 text-center">
+		<button aria-hidden="true" data-toggle="tooltip" title="Изменить название группы" class="btn btn-primary btn-edit-group w-100">
+			<i class="fa fa-pencil"></i>
+		</button>
+	</div>
+</div>
+
+<div class="row group-name-edit d-none">
+	<div class="col-12 col-lg-10 mb-3 mb-lg-0">
+		<input  type="text" id="{{ group_form.name.id_for_label }}"
+				name="{{ group_form.name.html_name }}"
+				maxlength="{{ group_form.name.field.max_length }}"
+				placeholder="{{ group_form.name.label }}"
+				class="form-control"
+				value="{{ group_form.name.value|default_if_none:'' }}"
+				required>
+	</div>
+	<div class="col-6 col-lg-1 text-center">
+		<button type="submit" aria-hidden="true" data-toggle="tooltip" title="Сохранить" class="btn btn-success w-100">
+			<i class="fa fa-floppy-o"></i>
+		</button>
+	</div>
+	<div class="col-6 col-lg-1 text-center">
+		<button aria-hidden="true" data-toggle="tooltip" title="Отмена" class="btn btn-danger btn-cancel-group w-100">
+			<i class="fa fa-window-close"></i>
+		</button>
+	</div>
+</div>

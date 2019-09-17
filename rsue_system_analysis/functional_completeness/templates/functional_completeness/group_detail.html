@@ -1,0 +1,119 @@
+{% extends "functional_completeness/base.html" %}
+{% load static %}
+
+{% block titel %}Изменение: {{object.name}} | Сравнение по критерию функциональной полноты
+{% endblock titel %}
+
+{% block links %}
+	<link rel="stylesheet" type="text/css"
+		href="{% static 'functional_completeness/css/group_edit.css' %}">
+{% endblock links %}
+
+{% block content %}
+<div class="container margin-content">
+	<div class="row mt-4">
+		<div class="col-12">
+			<form class="group-name-form" method="POST" action="{% url 'functional_completeness:group_edit' object.pk %}">
+				{% csrf_token %}
+				<div class="group-name">
+					{% include "functional_completeness/inc/group_edit_form.html" %}
+				</div>
+			</form>
+			<hr class="hr-bold">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-12">
+			<div class="row">
+				<div class="col-11">
+					<h3 class="text-center mb-3">Пороговые значения</h3>
+				</div>
+			</div>
+		</div>
+		<div class="col-12">
+			<form class="form-save" method="POST" action="{% url 'functional_completeness:indicators_edit' object.pk %}">
+				{% csrf_token %}
+				<div class="row indicators content-replace">
+					{% include "functional_completeness/inc/indicator_form.html" %}
+				</div>
+				<button type="submit" data-toggle="tooltip" title="Сохранить" class="btn btn-success w-lg-max-100">
+					<i class="fa fa-floppy-o"></i> Сохранить показатели
+				</button>
+			</form>
+			<hr class="hr-lg-bold">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-12">
+			<div class="row">
+				<div class="col-11">
+					<h3 class="text-center mb-3">Объекты</h3>
+				</div>
+			</div>
+		</div>
+		<div class="col-12">
+			<form method="POST" action="{% url 'functional_completeness:object_save' object.pk %}" class="form-save" data-prefix="{{object_forms.prefix}}">
+				{% csrf_token %}
+				<div class="objects content-replace">
+					{% include "inc/inline_formset.html" with formset=object_forms %}
+				</div>
+				<button data-toggle="tooltip" title="Добавить объект" class="btn btn-primary btn-add w-lg-max-100 mb-3 mb-lg-0">
+					<i class="fa fa-plus"></i> Добавить объект
+				</button>
+				<button type="submit" aria-hidden="true" data-toggle="tooltip" class="btn btn-success w-lg-max-100" title="Сохранить">
+					<i class="fa fa-floppy-o"></i> Сохранить объекты
+				</button>
+			</form>
+			<hr class="hr-lg-bold">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-12">
+			<div class="row">
+				<div class="col-11 mb-3">
+					<h3 class="text-center mb-3">Показатели (Функции)</h3>
+				</div>
+			</div>
+		</div>
+		<div class="col-12">
+			<form method="POST" action="{% url 'functional_completeness:function_save' object.pk %}" class="form-save" data-prefix="{{function_forms.prefix}}">
+				{% csrf_token %}
+				<div class="functions content-replace">
+					{% include "inc/inline_formset.html" with formset=function_forms %}
+				</div>
+				<button data-toggle="tooltip" title="Добавить функцию" class="btn btn-primary btn-add w-lg-max-100 mb-3 mb-lg-0">
+					<i class="fa fa-plus"></i> Добавить показатель
+				</button>
+				<button type="submit" aria-hidden="true" data-toggle="tooltip" class="btn btn-success w-lg-max-100" title="Сохранить">
+					<i class="fa fa-floppy-o"></i> Сохранить Показатели
+				</button>
+			</form>
+			<hr class="hr-lg-bold">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<form method="POST" action="{% url 'functional_completeness:object_function_save' object.pk %}" class='form-save'>
+				{% csrf_token %}
+				<div class="table-responsive object-function">
+					{% include "functional_completeness/inc/object_funtion_form.html" %}
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<a href="{% url 'functional_completeness:calculate' object.pk %}" class="btn btn-primary w-100 mt-4 p-3">
+				<i class="fa fa-calculator" aria-hidden="true"></i> Выполнить рассчет
+			</a>
+		</div>
+	</div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+	<script src="{% static 'functional_completeness/js/group_edit.js' %}"></script>
+{% endblock scripts %}

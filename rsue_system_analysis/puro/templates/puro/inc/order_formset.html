@@ -1,0 +1,31 @@
+{{ formset.management_form }}
+<div class="accordion" id="accordionExample">
+    {% for form in formset %}
+        {% ifchanged form.instance.expert %}
+            <div class="card mb-2">
+                <div class="card-header">
+                    <button class="w-100 text-left btn btn-link" type="button" data-toggle="collapse" data-target="#collapse-{{form.expert.initial}}">
+                        {{form.instance.expert}}
+                    </button>
+                </div>
+                <div id="collapse-{{form.expert.initial}}" class="collapse {% if forloop.first %}show{% endif %}" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <h4 class="m-2 mt-0 mb-3">Показатели:</h4>
+                        <ul class="sortable list-unstyled">
+                            {% for form_inline in formset %}
+                                {% if form_inline.instance.expert == form.instance.expert %}
+                                    <li class="ui-state-default m-2">
+                                        <div class="p-2">
+                                            <span class="ui-icon ui-icon-arrowthick-2-n-s"></span> {{form_inline.instance.indicator}}
+                                        </div>
+                                        {{form_inline}}
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% endifchanged %}
+    {% endfor %}
+</div>

@@ -1,0 +1,6 @@
+{% load functional_completeness %}
+{{ formset.management_form }}
+{% for form in formset %}
+	{% include "inc/formset_form.html" %}
+{% endfor %}
+{% include "inc/formset_form.html" with form=formset.empty_form %}

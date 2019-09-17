@@ -1,0 +1,17 @@
+<div class="table-responsive">
+	<table class="table table-striped table-bordered m-0">
+		<tbody class="text-center">
+			{% for row in matrix.get_matrix %}
+				<tr>
+					{% for col in row %}
+						{% if forloop.parentloop.parentloop.last and forloop.last %}
+							<td><strong>{{col}}</strong></td>
+						{% else %}
+							<td>{{col}}</td>
+						{% endif %}
+					{% endfor %}
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>

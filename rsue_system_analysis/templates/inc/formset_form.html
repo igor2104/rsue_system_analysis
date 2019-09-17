@@ -1,0 +1,43 @@
+{% load functional_completeness %}
+<div class="mb-2 row element {% if not form.errors and not form.initial %}d-none empty-element{%endif%}">
+	<div class="col-1 text-center d-none d-lg-block">
+		<i class="fa fa-hashtag"></i>
+	</div>
+	<div {% if form.instance and form.instance.get_absolute_url %}class="sad col-12 col-sm-8 col-lg-9 mb-2 mb-sm-0"{% else %}class="col-9 col-sm-10 col-lg-10"{% endif %}>
+		{% for line in form %}
+			{% for field in line %}
+				{% if not field.data.name ==  form.DELETE.html_name %}
+					<input type="{{field.data.type}}" name="{{field.data.name}}" {% if field.data.value %}
+						value="{{field.data.value|default_if_none:''}}"
+					{% endif %} id="{{field.data.attrs.id}}" class="form-control" placeholder="{{line.label}}">
+				{% endif %}
+			{% endfor %}
+		{% endfor %}
+		{% for k, v in form.errors.items %}
+			{{v}}
+		{% endfor %}
+	</div>
+	{% if form.instance and form.instance.get_absolute_url %}
+		<div class="col-6 col-sm-2 col-lg-1 text-center">
+			<a href="{{form.instance.get_absolute_url}}" aria-hidden="true" data-toggle="tooltip" title="" class="btn btn-primary w-lg-max-100 text-white" data-original-title="Изменить данные">
+				<i class="fa fa-pencil"></i>
+			</a>
+		</div>
+	{% endif %}
+	<div {% if form.instance and form.instance.get_absolute_url %} class="col-6 col-sm-2 col-lg-1 text-center" {% else %} class="col-3 col-sm-2 col-lg-1 text-center" {% endif %}>
+		{% if form.initial %}
+			<label data-tooltip="tooltip" class="btn btn-danger text-white w-lg-max-100" data-target="#deleteGroupModal30" title="Пометить для удаления">
+				{{ form.DELETE }}
+			</label>
+		{% else %}
+			<button data-toggle="tooltip" class="btn btn-danger btn-cancel w-lg-max-100" title="Отмена">
+				<i class="fa fa-window-close"></i>
+			</button>
+		{%endif%}
+	</div>
+	{% if form.initial %}
+		<div class="col-12 text-center d-lg-none">
+			<hr>
+		</div>
+	{%endif%}
+</div>

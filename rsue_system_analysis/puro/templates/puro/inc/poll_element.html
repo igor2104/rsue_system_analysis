@@ -1,0 +1,51 @@
+<div class="row group-element" style="margin-top: 10px; margin-bottom: 10px;">
+    <div class="col-1 text-center d-none d-lg-block">
+        <i class="fa fa-hashtag" aria-hidden="true"></i>
+    </div>
+    <div class="col-12 col-lg-8 text-center text-lg-left mb-3 mb-lg-0">
+        <a class="w-100" href="{% url 'puro:poll_detail' poll.pk %}">{{poll.name}}</a>
+    </div>
+    <div class="col-3 d-lg-none text-center">
+        <a href="{% url 'puro:poll_detail' poll.pk %}" aria-hidden="true" data-toggle="tooltip" title="Рассчитать" class="btn btn-primary w-100">
+            <i class="fa fa-calculator" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="col-3 col-lg-1 text-center d-flex align-items-center">
+        <a href="#" aria-hidden="true" data-toggle="tooltip" title="Сохранить расчеты в Excel" class="btn btn-success w-100">
+            <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="col-3 col-lg-1 text-center d-flex align-items-center">
+        <a href="{{poll.get_absolute_url}}" aria-hidden="true" data-toggle="tooltip" title="Изменить данные" class="btn btn-primary w-100">
+            <i class="fa fa-pencil"></i>
+        </a>
+    </div>
+    <div class="col-3 col-lg-1 text-center d-flex align-items-center">
+        <button aria-hidden="true" data-tooltip="tooltip" data-toggle="modal" title="Удалить опрос" class="btn btn-danger text-white w-100" data-target="#deleteGroupModal{{poll.pk}}">
+            <i class="fa fa-trash"></i>
+        </button>
+
+        <div class="modal" id="deleteGroupModal{{poll.pk}}" tabindex="-1" role="dialog" aria-labelledby="deleteGroupModal{{poll.pk}}" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form method="POST" action="{% url 'puro:poll_del' poll.pk %}" class="modal-content form-group-delete">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Удаление опроса</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Внимание это действие не возможно отменить. Вы уверенны что хотите <span class="text-danger font-weight-bold">удалить</span> опрос и все данные о нем?
+                    </div>
+                    <div class="modal-footer">
+                        <button  type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Закрыть</button>
+                        <button type="submit" class="btn btn-danger">Удалить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 text-center d-lg-none">
+        <hr>
+    </div>
+</div>

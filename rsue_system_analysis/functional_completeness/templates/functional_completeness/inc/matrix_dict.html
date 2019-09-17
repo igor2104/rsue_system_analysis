@@ -1,0 +1,30 @@
+<div class="table-responsive">
+	<table class="table table-dark table-striped table-bordered">
+		<thead>
+			<tr>
+				<th style="border-top: 0;border-left: 0;" class="bg-white"></th>
+				<th class="text-center" colspan="{{matrix|length}}">Обьекты</th>
+			</tr>
+		</thead>
+		<tbody class="text-center">
+			<tr>
+				<td ><strong>Показатели (Функции)</strong></td>
+				{% for key_row, row in matrix.items %}
+					{% if forloop.counter == 1 %}
+						{% for key_col, col in row.items %}
+							<td class="bg-primary"><strong>{{key_col}}</strong></td>
+						{% endfor %}
+					{%endif%}
+				{% endfor %}
+			</tr>
+			{% for key_row, row in matrix.items %}
+				<tr>
+					<td class="bg-primary"><strong>{{key_row}}</strong></td>
+					{% for key_col, col in row.items %}
+						<td {% if col == 1 %}class="bg-success"{% endif %}>{{col}}</td>
+					{% endfor %}
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>

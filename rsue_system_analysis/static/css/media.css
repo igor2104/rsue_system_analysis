@@ -1,0 +1,63 @@
+/*Small devices (landscape phones, 576px and up)*/
+@media (max-width: 575px) {
+    .login-form-container .form-group label{
+        padding: 15px;
+    }
+    .login-form-container .form-group label, .login-form-container .form-group a{
+        border-right: 0;
+        justify-content: left;
+    }
+    .login-form-container .form-group a{
+        padding: 10px;
+        font-size: 14px;
+    }
+    .content.mb{
+        margin-bottom: 250px;
+    }
+    .navbar-brand{
+        white-space: normal;
+        max-width: 75%;
+    }
+    .tooltip {
+        display: none !important;
+    }
+}
+
+/*// Medium devices (tablets, 768px and up)*/
+@media (max-width: 767px) {
+    .navbar-brand{
+        white-space: normal;
+        max-width: 75%;
+    }
+}
+
+/* Large devices (desktops, 992px and up)*/
+@media (max-width: 991px) {
+    .hr-bold{
+        border-width: 6px;
+    }
+
+    .hr-lg-bold{
+        border-width: 4px;
+    }
+    .w-lg-max-100{
+        width: 100% !important;
+    }
+    .alert-container{
+        bottom: 1%;
+        left: 15px;
+        top: auto;
+        right: auto;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (max-width: 1199px) {
+
+}
+
+@media (max-width: 374px) {
+    .navbar-brand{
+        font-size: 1.1rem;
+    }
+}
